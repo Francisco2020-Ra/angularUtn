@@ -1,0 +1,26 @@
+<mat-card class="container">
+<input type="text" [(ngModel)]="tarea">
+<button mat-raised-button color="primary"  (click)="agregarTarea()"> Agregar </button>
+
+<ng-container *ngIf="lista.length > 0; else vacia">
+    <mat-selection-list>
+       <mat-grid-list cols="3" rowHeight="50px" style="width: 97%; margin-left: 15px;">
+                <mat-grid-tile>Nro. de Tarea</mat-grid-tile>
+                <mat-grid-tile>Descripcion</mat-grid-tile>                
+                <mat-grid-tile>Eliminar</mat-grid-tile>
+        </mat-grid-list>          
+        <mat-list-option *ngFor="let item of lista" style="margin-top: 5px; width: 100%;">  
+            <mat-grid-list cols="3" rowHeight="50px">
+                <mat-grid-tile>{{ item.id }}</mat-grid-tile>
+                <mat-grid-tile>{{ item.descripcion}}</mat-grid-tile>                
+                <mat-grid-tile><button mat-raised-button color="warn" (click)="eliminarTarea( item.id )">Eliminar</button></mat-grid-tile>
+            </mat-grid-list>            
+        </mat-list-option>    
+    </mat-selection-list>    
+</ng-container>
+
+<ng-template #vacia>
+    <h2>Lista de tareas vacia</h2>
+</ng-template>
+
+</mat-card>
